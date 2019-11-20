@@ -4,15 +4,41 @@
  */
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 
 class Field {
+	//private int rows = 12;
+	//private int cols = 15;
+	//static char[][] grid = new char[rows][cols];
 	static Scanner in = new Scanner(System.in);
+	static Scanner roomIn;// = new Scanner(new BufferedReader(new FileReader("room1.txt")));
 	static char[][] grid;
-
+	
 	//Method used to generate the room in which the game is played.
 	//The room grid is made up of a 2 dimentional array
 	public static void generateField (Character c) {
-		grid = new char[][] {
+	
+		int rows = 12;
+		int cols = 15;
+		try {
+			roomIn = new Scanner(new BufferedReader(new FileReader("room1.txt")));
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("Cannot find the file");
+		}
+		grid = new char[rows][cols];
+		while (roomIn.hasNextLine()) {
+			for (int i = 0; i < grid.length; i++) {
+				String[] line = roomIn.nextLine().trim().split(" ");
+				for (int j = 0; j < line.length; j++) {
+					grid[i][j] = line[j].charAt(0);
+				}
+			}
+		}
+
+		/*grid = new char[][] {
 			{'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
 			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '$', '|'},
 			{'|', '*', '$', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
@@ -25,7 +51,7 @@ class Field {
 			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '$', '*', '|'},
 			{'|', '$', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
 			{'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-		};
+		};*/
 		moveChar(c);
 	}
 
@@ -64,6 +90,11 @@ class Field {
 			System.out.print("Enter a command: ");
 			move = in.next();
 			System.out.println("");
+
+			while (!move.equals("a") && !move.equals("s") && !move.equals("w") && !move.equals("d") && !move.equals("i") && !move.equals("q")) {
+				System.out.print("Enter a valid comand: ");
+				move = in.next();
+			}
 
 			if (move.equals("a") || move.equals("d")) {
 				x = moveX(move, y, x);
@@ -125,18 +156,20 @@ class Field {
 				}
 			}
 		} while (!move.equals("q"));
-}
+	}
 
 	//Method used to move the users char to the left and right on the grid
 	public static int moveX(String s, int vert, int horiz) {
 		if (s.equals("a")) {
-			if (grid[vert][horiz - 1] == '|') {
+			if (grid[vert][horiz - 1] == '|' || grid[vert][horiz - 1] == '-') {
+				System.out.println("You have walked into a wall");
 				return horiz;
 			}
 			horiz--;
 		}
 		else if (s.equals("d")) {
-			if (grid[vert][horiz + 1] == '|') {
+			if (grid[vert][horiz + 1] == '|' || grid[vert][horiz + 1] == '-') {
+				System.out.println("You have walked into a wall");
 				return horiz;
 			}
 			horiz++;
@@ -147,13 +180,15 @@ class Field {
 	//Method used to move the users char up and down on the grid
 	public static int moveY(String s, int vert, int horiz) {
 		if (s.equals("s")) {
-			if (grid[vert + 1][horiz] == '-') {
+			if (grid[vert + 1][horiz] == '-' || grid[vert + 1][horiz] == '|') {
+				System.out.println("You have walked into a wall");
 				return vert;
 			}
 			vert++;
 		}
 		else if (s.equals("w")) {
-			if (grid[vert - 1][horiz] == '-') {
+			if (grid[vert - 1][horiz] == '-' || grid[vert - 1][horiz] == '|') {
+				System.out.println("You have walked into a wall");
 				return vert;
 			}
 			vert--;
