@@ -1,3 +1,5 @@
+import java.util.Scanner;  
+
 abstract class Organism {
 
 	int health;
@@ -9,6 +11,12 @@ abstract class Organism {
 		this.Char = Char;
 
 	} 
+	Organism(Scanner s, char Char){
+        health = s.nextInt();
+	damage = s.nextInt();
+        this.Char = Char;
+
+	}
 	public char getChar(){
 		return Char;	 
 	}

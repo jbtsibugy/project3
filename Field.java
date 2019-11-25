@@ -9,8 +9,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 class Field {
-	//private int rows = 12;
-	//private int cols = 15;
 	//static char[][] grid = new char[rows][cols];
 	static Scanner in = new Scanner(System.in);
 	static Scanner roomIn;// = new Scanner(new BufferedReader(new FileReader("room1.txt")));
@@ -86,7 +84,12 @@ class Field {
 				System.out.println(grid[i]);
 			}
 
-			System.out.println("a = left, s = down, w = up, d = right, i = inventory menu, q = quit game");
+			System.out.println("a = left");
+			System.out.println("s = down");
+			System.out.println("w = up");
+			System.out.println("d = right");
+			System.out.println("i = inventory menu");
+			System.out.println("q = quit game");
 			System.out.print("Enter a command: ");
 			move = in.next();
 			System.out.println("");
@@ -119,7 +122,7 @@ class Field {
 			}
 
 			if (move.equals("i")) {
-				Menus.characterMenu(c);
+				Menus.characterMenu(c,e1,e2,e3,e4);
 			}
 
 			moveEnemies();

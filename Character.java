@@ -1,3 +1,6 @@
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 class Character extends Organism {
 	private Item weapon;
 	private Item armor;
@@ -9,12 +12,24 @@ class Character extends Organism {
 		this.name = name;
 	}
 
+	Character(Scanner s) {
+		super(s,'@');
+		name = s.nextLine();
+
+	}
+	void persist(PrintWriter pw){
+		pw.println(name);
+		System.out.println(" Here! in the Character class!");
+		pw.println(health);
+		pw.println(damage);
+	}
+
 	//Getter method for returning the name
 	public String getName(){
 		return name;
 	}
 
-	
+
 	//Setter method used to set the equipped weapon
 	public void setEquippedWeapon(Item weapon){
 		this.weapon = weapon;
