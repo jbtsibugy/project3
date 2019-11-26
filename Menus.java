@@ -54,7 +54,6 @@ class Menus {
 					break;
 				case 6:
 					try {
-						System.out.println("Hellooo from the Menu class");
 						FileOutputStream save = new FileOutputStream("savedinfo.txt");
 						PrintWriter print = new PrintWriter(save);
 						c.persist(print);
@@ -69,7 +68,6 @@ class Menus {
 					break;
 				case 7:
 					try {	
-						System.out.println("I'm loading!");
 						FileInputStream load = new FileInputStream("savedinfo.txt");
 						Scanner filereader = new Scanner(load);
 						c.hydration(filereader);
@@ -77,11 +75,6 @@ class Menus {
 						e2.hydration(filereader);
 						e3.hydration(filereader);
 						e4.hydration(filereader);
-					//	Character loadedchar = new Character().hydration(filereader);
-					//	Enemy loadedenmy1 = new Enemy(filereader);	 
-					//	Enemy loadedenmy2 = new Enemy(filereader);	 
-					//	Enemy loadedenmy3 = new Enemy(filereader);	 
-					//	Enemy loadedenmy4 = new Enemy(filereader);
 						filereader.close();
 					}	catch(FileNotFoundException e){
 						System.out.println("File was not found");

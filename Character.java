@@ -11,18 +11,7 @@ class Character extends Organism {
 		super(100, 1, '@');
 		this.name = name;
 	}
-	/*
-	   Character(Scanner s) {
-	   super(s,'@');
-	   String trash;
-	   String desc;
-	   name = s.nextLine();
-	   health = s.nextInt();
-	   damage = s.nextInt();
-	   trash = s.nextLine();
-	   desc = s.nextLine();    
-	   }
-	 */
+	// Method to load
 	void hydration(Scanner s) {
 		String trash;
 		String desc;
@@ -32,8 +21,8 @@ class Character extends Organism {
 		trash = s.nextLine();
 		desc = s.nextLine();    
 	}
+	// Method to save
 	void persist(PrintWriter pw){
-		System.out.println(" Here! in the Character class!");
 		pw.println(name);
 		pw.println(health);
 		pw.println(damage);
