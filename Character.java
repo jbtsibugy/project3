@@ -11,9 +11,19 @@ class Character extends Organism {
 		super(100, 1, '@');
 		this.name = name;
 	}
-
-	Character(Scanner s) {
-		super(s,'@');
+	/*
+	   Character(Scanner s) {
+	   super(s,'@');
+	   String trash;
+	   String desc;
+	   name = s.nextLine();
+	   health = s.nextInt();
+	   damage = s.nextInt();
+	   trash = s.nextLine();
+	   desc = s.nextLine();    
+	   }
+	 */
+	void hydration(Scanner s) {
 		String trash;
 		String desc;
 		name = s.nextLine();
