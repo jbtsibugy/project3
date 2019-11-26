@@ -24,6 +24,7 @@ class Menus {
 			System.out.println("4: Equip armor");
 			System.out.println("5: Return to dugeon");
 			System.out.println("6: Save Game");
+			System.out.println("7: Load Game");
 
 			System.out.print("Enter a number: ");
 			choice = in.nextInt();
@@ -49,7 +50,7 @@ class Menus {
 				case 4:
 					inven.equipArmor(c);
 					break;
-				case 5:
+				case 6:
 					try {
 						System.out.println("Hellooo from the Menu class");
 						File save = new File("savedinfo.txt");
@@ -63,32 +64,41 @@ class Menus {
 					}	catch(FileNotFoundException e){
 						System.out.println("File was not found");		
 					}
+					break;
 
+				case 7: 
+                                 System.out.println("I'm loading!");
+				 c.Character(in);
+			         e1.Enemy(in);	 
+			         e2.Enemy(in);	 
+			         e3.Enemy(in);	 
+			         e4.Enemy(in);	 
+				 break;
 			}
-					System.out.println("");
+			System.out.println("");
 
-			} while (choice != 5);
+		} while (choice != 5);
+	}
+
+	//Method used to print a randon item that the user has found and
+	//allow the user to add the item to their inventory
+	public static void floorItemMenu() {
+		Item thing = ItemGenerator.generate();
+
+		System.out.println("You have found the: " + thing.toString());
+		System.out.println("Would you like to add this item to your inventory (y or n)?");
+
+		String choice = in.next();
+		while (!choice.equals("y") && !choice.equals("n")) {
+			System.out.print("Enter a valid choice: ");
+			choice = in.next();
 		}
-
-		//Method used to print a randon item that the user has found and
-		//allow the user to add the item to their inventory
-		public static void floorItemMenu() {
-			Item thing = ItemGenerator.generate();
-
-			System.out.println("You have found the: " + thing.toString());
-			System.out.println("Would you like to add this item to your inventory (y or n)?");
-
-			String choice = in.next();
-			while (!choice.equals("y") && !choice.equals("n")) {
-				System.out.print("Enter a valid choice: ");
-				choice = in.next();
-			}
-			if (choice.equals("y")) {
-				boolean canAdd = inven.add(thing);
-				System.out.println("Item has been added to inventory");
-			}
-			else {
-				System.out.println("Item has been dropped");
-			}
+		if (choice.equals("y")) {
+			boolean canAdd = inven.add(thing);
+			System.out.println("Item has been added to inventory");
+		}
+		else {
+			System.out.println("Item has been dropped");
 		}
 	}
+}

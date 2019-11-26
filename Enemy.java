@@ -8,13 +8,20 @@ class Enemy extends Organism{
 		super(100, 15, '&');
 	}
 	Enemy(Scanner s){
-        super(s,'&');
+		super(s,'&');
+		String trash;
+		String desc;
+		health = s.nextInt();
+		damage = s.nextInt();
+		trash = s.nextLine();
+		desc = s.nextLine();
 	}
-        
+
 	void persist(PrintWriter pw){
-        pw.println(health);
-	pw.println(damage);
-	System.out.println("Here in the Enemy Class!");
+		pw.println(health);
+		pw.println(damage);
+		pw.println(".");
+		System.out.println("Here in the Enemy Class!");
 	}
 
 }

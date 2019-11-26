@@ -14,14 +14,20 @@ class Character extends Organism {
 
 	Character(Scanner s) {
 		super(s,'@');
+		String trash;
+		String desc;
 		name = s.nextLine();
-
+		health = s.nextInt();
+		damage = s.nextInt();
+		trash = s.nextLine();
+		desc = s.nextLine();    
 	}
 	void persist(PrintWriter pw){
-		pw.println(name);
 		System.out.println(" Here! in the Character class!");
+		pw.println(name);
 		pw.println(health);
 		pw.println(damage);
+		pw.println(".");
 	}
 
 	//Getter method for returning the name
