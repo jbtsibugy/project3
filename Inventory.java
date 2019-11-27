@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*This method is used to create an Inventory object. It has several methods used to
+/*This class is used to create an Inventory object. It has several methods used to
  * add and drop items form the inventory as well as equip items an so on.
  *
  * @author Zachary Brennan
@@ -110,10 +110,11 @@ class Inventory {
 		}
 		if (choice >= 1 && choice <= count) {
 			this.equippedWeapon = weapons.get(choice - 1);
+			c.setEquippedWeapon(weapons.get(choice - 1));
 			System.out.println("");
 			System.out.println("Equipped: " + equippedWeapon.toString());
-			c.setDamage(c.getDamage() + equippedWeapon.getStrength());
-			System.out.println(c.getName() + "'s damage value: " + c.getDamage());
+			//c.setDamage(c.getDamage() + equippedWeapon.getStrength());
+			System.out.println(c.getName() + "'s damage value: " + (c.getDamage() + c.getWeaponValue()));
 		}
 	}
 
@@ -145,10 +146,11 @@ class Inventory {
 		}
 		if (choice >= 1 && choice <= count) {
 			this.equippedArmor = armors.get(choice - 1);
+			c.setEquippedArmor(armors.get(choice - 1));
 			System.out.println("");
 			System.out.println("Equipped: " + equippedArmor.toString());
-			c.setHealth(c.getHealth() + equippedArmor.getStrength());
-			System.out.println(c.getName() + "'s health: " + c.getHealth());
+			//c.setHealth(c.getHealth() + equippedArmor.getStrength());
+			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()));
 		}
 	}
 }

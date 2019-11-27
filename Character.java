@@ -34,7 +34,24 @@ class Character extends Organism {
 		return name;
 	}
 
+	public int getArmorValue() {
+		if (armor == null) {
+			return 0;
+		}
+		else {
+			return armor.getStrength();
+		}
+	}
 
+	public int getWeaponValue() {
+		if (weapon == null) {
+			return 0;
+		}
+		else {
+			return weapon.getStrength();
+		}
+
+	}
 	//Setter method used to set the equipped weapon
 	public void setEquippedWeapon(Item weapon){
 		this.weapon = weapon;

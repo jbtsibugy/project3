@@ -10,8 +10,8 @@ class Battle {
 		Scanner in = new Scanner(System.in);
 
 		while (c.getHealth() > 0 && e.getHealth() > 0) {
-			System.out.println(c.getName() + " attacks for: " + c.getDamage());
-			e.setHealth(e.getHealth() - c.getDamage());
+			System.out.println(c.getName() + " attacks for: " + (c.getDamage() + c.getWeaponValue()));
+			e.setHealth(e.getHealth() - (c.getDamage() + c.getWeaponValue()));
 			System.out.println("Enemy Health: " + e.getHealth());
 			System.out.println();
 
@@ -23,11 +23,12 @@ class Battle {
 
 			System.out.println("Enemy attacks for: " + e.getDamage());
 			c.setHealth(c.getHealth() - e.getDamage());
-			System.out.println(c.getName() + "'s health: " + c.getHealth());
+			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()));
 			System.out.println();
 
-			if (c.getHealth() <= 0) {
+			if ((c.getHealth() + c.getArmorValue()) <= 0) {
                 		System.out.println(c.getName() + " lost the battle and died! Game Over!");
+				System.out.println();
 				return false;
 			}
 
@@ -46,7 +47,7 @@ class Battle {
 			}
 
 		}
-		if (c.getHealth() > 0){
+		if ((c.getHealth() + c.getArmorValue()) > 0){
                 	System.out.println(c.getName() + " won the battle!");
 			return true;
 		}

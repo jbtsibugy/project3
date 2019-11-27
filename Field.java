@@ -9,73 +9,53 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 class Field {
-	//static char[][] grid = new char[rows][cols];
-	static Scanner in = new Scanner(System.in);
-	static Scanner roomIn;// = new Scanner(new BufferedReader(new FileReader("room1.txt")));
-	static char[][] grid;
-	
-	//Method used to generate the room in which the game is played.
-	//The room grid is made up of a 2 dimentional array
-	public static void generateField (Character c) {
-	
-		int rows = 12;
-		int cols = 15;
-		try {
-			roomIn = new Scanner(new BufferedReader(new FileReader("room1.txt")));
-		}
-		catch (FileNotFoundException e) {
-			System.out.println("Cannot find the file");
-		}
-		grid = new char[rows][cols];
-		while (roomIn.hasNextLine()) {
-			for (int i = 0; i < grid.length; i++) {
-				String[] line = roomIn.nextLine().trim().split(" ");
-				for (int j = 0; j < line.length; j++) {
-					grid[i][j] = line[j].charAt(0);
-				}
-			}
-		}
+	Scanner in = new Scanner(System.in);
+	private char[][] grid;
+	private Room room1;
+	private Room room2;
+	private Room room3;
+	private Character c;
 
-		/*grid = new char[][] {
-			{'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '$', '|'},
-			{'|', '*', '$', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'|', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '$', '*', '|'},
-			{'|', '$', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '|'},
-			{'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-		};*/
+	public Field(Character c) {
+		room1 = new Room("room1.txt");
+		room2 = new Room("room2.txt");
+		room3 = new Room("room3.txt");
+		grid = room1.getGrid();
+		this.c = c;
 		moveChar(c);
 	}
 
 	//Mehtod used to move the users char throughout the grid.
 	//This method also sets creates Enemy objects and allows the users
 	//char to interact with the playing field
-	public static void moveChar(Character c) {
+	public void moveChar(Character c) {
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		char user = c.getChar();
-		Enemy e1 = new Enemy();
-		enemies.add(e1);
-		Enemy e2 = new Enemy();
-		enemies.add(e2);
-		Enemy e3 = new Enemy();
-		enemies.add(e3);
-		Enemy e4 = new Enemy();
-		enemies.add(e4);
-		int x = 5;
-		int y = 5;
+		PopulateEnemies.createThem(enemies);
+		int x = 7;
+		int y = 6;
 		int count = 0;
 		String move = "";
 
-		grid[2][1] = e1.getChar();
-		grid[1][3] = e2.getChar();
-		grid[9][11] = e3.getChar();
-		grid[8][13] = e4.getChar();
+		grid[2][1] = enemies.get(0).getChar();
+		grid[1][3] = enemies.get(1).getChar();
+		grid[9][11] = enemies.get(2).getChar();
+		grid[8][13] = enemies.get(3).getChar();
+
+		grid = room2.getGrid();
+		grid[3][4] = enemies.get(4).getChar();
+		grid[3][10] = enemies.get(5).getChar();
+		grid[7][4] = enemies.get(6).getChar();
+		grid[7][10] = enemies.get(7).getChar();
+
+		grid = room3.getGrid();
+		grid[4][1] = enemies.get(8).getChar();
+		grid[4][13] = enemies.get(9).getChar();
+		grid[11][4] = enemies.get(10).getChar();
+		grid[11][10] = enemies.get(11).getChar();
+
+		grid = room1.getGrid();
+
 		do {
 			grid[y][x] = user;
 			for (int i = 0; i < grid.length; i++) {
@@ -122,12 +102,33 @@ class Field {
 			}
 
 			if (move.equals("i")) {
-				Menus.characterMenu(c,e1,e2,e3,e4);
+				Menus.characterMenu(c, enemies.get(0),enemies.get(1), enemies.get(2), enemies.get(3));
 			}
 
 			moveEnemies();
 			if (grid[y][x] == '$') {
 				Menus.floorItemMenu();
+			}
+			else if (grid[y][x] == '#' && y == 11) {
+				grid = room2.getGrid();
+
+				x = 2;
+				y = 1;
+			}
+			else if (grid[y][x] == '#' && y == 1) {
+				grid = room1.getGrid();
+				x = 12;
+				y = 11;
+			}
+			else if (grid[y][x] == '#' && y == 10) {
+				grid = room3.getGrid();
+				x = 7;
+				y = 8;
+			}
+			else if (grid[y][x] == '#' && y == 7) {
+				grid = room2.getGrid();
+				x = 7;
+				y = 11;
 			}
 			else if (grid[y][x] == '&' || grid[y + 1][x] == '&' || grid[y - 1][x] == '&' || grid[y][x + 1] == '&' || grid[y][x - 1] == '&') {
 				
@@ -140,7 +141,7 @@ class Field {
 					count++;
 				}
 
-				if (count >= 4) {
+				if (count >= 12) {
 					System.out.println(c.getName() + " has defeated all enemies and won the game!");
 					return;
 				}
@@ -158,11 +159,12 @@ class Field {
 					grid[y][x - 1] = '*';
 				}
 			}
+			//moveEnemies();
 		} while (!move.equals("q"));
 	}
 
 	//Method used to move the users char to the left and right on the grid
-	public static int moveX(String s, int vert, int horiz) {
+	public int moveX(String s, int vert, int horiz) {
 		if (s.equals("a")) {
 			if (grid[vert][horiz - 1] == '|' || grid[vert][horiz - 1] == '-') {
 				System.out.println("You have walked into a wall");
@@ -181,7 +183,7 @@ class Field {
 	}
 
 	//Method used to move the users char up and down on the grid
-	public static int moveY(String s, int vert, int horiz) {
+	public int moveY(String s, int vert, int horiz) {
 		if (s.equals("s")) {
 			if (grid[vert + 1][horiz] == '-' || grid[vert + 1][horiz] == '|') {
 				System.out.println("You have walked into a wall");
@@ -201,7 +203,7 @@ class Field {
 
 	//Method used to move the enemies in circulat motions around the
 	//items on the grid
-	public static void moveEnemies() {
+	public void moveEnemies() {
 		char enemy = '&';
 		if (grid[1][1] == '&') {
 			grid[1][2] = enemy;
