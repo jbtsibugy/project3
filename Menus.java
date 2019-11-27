@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 
 class Menus {
-	private static Inventory inven = new Inventory(40);
+	private static Inventory inven = new Inventory(50);
 	static Scanner in = new Scanner(System.in);
 
 	//Method used to display and interact with the users inventory

@@ -12,9 +12,9 @@ class Battle {
 
 		//while (curHealth > 0 && e.getHealth() > 0) {
 		do {
-			System.out.println(c.getName() + " attacks for: " + (c.getDamage() + c.getWeaponValue()));
+			System.out.println(c.getName() + " attacks the Troll for: " + (c.getDamage() + c.getWeaponValue()) + " damage");
 			e.setHealth(e.getHealth() - (c.getDamage() + c.getWeaponValue()));
-			System.out.println("Enemy Health: " + e.getHealth());
+			System.out.println("Troll Health: " + e.getHealth());
 			System.out.println();
 
 			if (e.getHealth() <= 0) {
@@ -23,10 +23,10 @@ class Battle {
 				return true;
 			}
 
-			System.out.println("Enemy attacks for: " + e.getDamage());
+			System.out.println("The Troll slashes you with its rusty sword for: " + e.getDamage() + " damage");
 			c.setHealth(c.getHealth() - e.getDamage());
 			curHealth = curHealth - e.getDamage();
-			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()) + " " + curHealth);
+			System.out.println(c.getName() + "'s health: " + curHealth);
 			System.out.println();
 			try {
 				Thread.sleep(2000);
@@ -56,13 +56,5 @@ class Battle {
 
 		} while (curHealth > 0 && e.getHealth() > 0);
 		return false;
-		/*if ((c.getHealth() + c.getArmorValue()) > 0){
-                	System.out.println(c.getName() + " won the battle!");
-			return true;
-		}
-		else {
-			System.out.println(c.getName() + " lost the battle and died! Game Over!" );
-			return false;
-		}*/
 	}
 }
