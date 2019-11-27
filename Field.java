@@ -43,16 +43,16 @@ class Field {
 		grid[8][13] = enemies.get(3).getChar();
 
 		grid = room2.getGrid();
-		grid[3][4] = enemies.get(4).getChar();
-		grid[3][10] = enemies.get(5).getChar();
-		grid[7][4] = enemies.get(6).getChar();
-		grid[7][10] = enemies.get(7).getChar();
+		grid[4][2] = enemies.get(4).getChar();
+		grid[4][12] = enemies.get(5).getChar();
+		grid[6][3] = enemies.get(6).getChar();
+		grid[6][11] = enemies.get(7).getChar();
 
 		grid = room3.getGrid();
-		grid[4][1] = enemies.get(8).getChar();
-		grid[4][13] = enemies.get(9).getChar();
-		grid[11][4] = enemies.get(10).getChar();
-		grid[11][10] = enemies.get(11).getChar();
+		grid[4][2] = enemies.get(8).getChar();
+		grid[4][12] = enemies.get(9).getChar();
+		grid[6][3] = enemies.get(10).getChar();
+		grid[6][11] = enemies.get(11).getChar();
 
 		grid = room1.getGrid();
 
@@ -269,6 +269,70 @@ class Field {
 		else if (grid[8][12] == '&') {
 			grid[8][13] = enemy;
 			grid[8][12] = '*';
+		}
+		if (grid[4][2] == '&') {
+			grid[4][3] = enemy;
+			grid[4][2] = '*';
+		}
+		else if (grid[4][3] == '&' ) {
+			grid[5][3] = enemy;
+			grid[4][3] = '*';
+		}
+		else if (grid[5][3] == '&') {
+			grid[5][2] = enemy;
+			grid[5][3] = '*';
+		}
+		else if (grid[5][2] == '&') {
+			grid[4][2] = enemy;
+			grid[5][2] = '*';
+		}
+		if (grid[4][12] == '&') {
+			grid[4][11] = enemy;
+			grid[4][12] = '*';
+		}
+		else if (grid[4][11] == '&') {
+			grid[5][11] = enemy;
+			grid[4][11] = '*';
+		}
+		else if (grid[5][11] == '&') {
+			grid[5][12] = enemy;
+			grid[5][11] = '*';
+		}
+		else if (grid[5][12] == '&') {
+			grid[4][12] = enemy;
+			grid[5][12] = '*';
+		}
+		if (grid[6][3] == '&') {
+			grid[7][3] = enemy;
+			grid[6][3] = '*';
+		}
+		else if (grid[7][3] == '&') {
+			grid[7][4] = enemy;
+			grid[7][3] = '*';
+		}
+		else if (grid[7][4] == '&') {
+			grid[6][4] = enemy;
+			grid[7][4] = '*';
+		}
+		else if (grid[6][4] == '&') {
+			grid[6][3] = enemy;
+			grid[6][4] = '*';
+		}
+		if (grid[6][11] == '&') {
+			grid[7][11] = enemy;
+			grid[6][11] = '*';
+		}
+		else if (grid[7][11] == '&') {
+			grid[7][10] = enemy;
+			grid[7][11] = '*';
+		}
+		else if (grid[7][10] == '&') {
+			grid[6][10] = enemy;
+			grid[7][10] = '*';
+		}
+		else if (grid[6][10] == '&') {
+			grid[6][11] = enemy;
+			grid[6][10] = '*';
 		}
 	}
 }

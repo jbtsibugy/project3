@@ -25,6 +25,11 @@ class Battle {
 			c.setHealth(c.getHealth() - e.getDamage());
 			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()));
 			System.out.println();
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException ie) {
+				System.out.println("Interrupted!");
+			}
 
 			if ((c.getHealth() + c.getArmorValue()) <= 0) {
                 		System.out.println(c.getName() + " lost the battle and died! Game Over!");
@@ -32,7 +37,7 @@ class Battle {
 				return false;
 			}
 
-			System.out.print("Would you like to continue the battle or run (c or r)? ");
+			/*System.out.print("Would you like to continue the battle or run (c or r)? ");
 			String choice = in.next();
 			System.out.println("");
 
@@ -44,7 +49,7 @@ class Battle {
 			if (choice.equals("r")) {
 				System.out.println("You have run from the battle");
 				return true;
-			}
+			}*/
 
 		}
 		if ((c.getHealth() + c.getArmorValue()) > 0){
