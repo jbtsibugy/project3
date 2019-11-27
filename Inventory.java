@@ -18,9 +18,9 @@ class Inventory {
 	//Constructor for Inventory objects with maxWeight as the input parameter
 	public Inventory(int maxWeight) {
 		this.maxWeight = maxWeight;
-		Item w0 = new Item(ItemType.WEAPON, "Baseball Bat", 2, 5, 3);
+		Item w0 = new Item(ItemType.WEAPON, "Baseball Bat", 2, 5, 5);
 		items.add(w0);
-		Item a0 = new Item(ItemType.ARMOR, "Thick Leather Jacket", 2, 4, 5);
+		Item a0 = new Item(ItemType.ARMOR, "Thick Leather Jacket", 2, 4, 30);
 		items.add(a0);
 	}
 

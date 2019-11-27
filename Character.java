@@ -8,7 +8,7 @@ class Character extends Organism {
 
 	//Constructer for Character objects
 	public Character (String name) {
-		super(100, 1, '@');
+		super(100, 5, '@');
 		this.name = name;
 	}
 	// Method to load
