@@ -8,8 +8,10 @@ class Battle {
 	//remaining health after the battle
 	public static boolean winFight (Character c, Enemy e) {
 		Scanner in = new Scanner(System.in);
+		int curHealth = c.getHealth() + c.getArmorValue();
 
-		while (c.getHealth() > 0 && e.getHealth() > 0) {
+		//while (curHealth > 0 && e.getHealth() > 0) {
+		do {
 			System.out.println(c.getName() + " attacks for: " + (c.getDamage() + c.getWeaponValue()));
 			e.setHealth(e.getHealth() - (c.getDamage() + c.getWeaponValue()));
 			System.out.println("Enemy Health: " + e.getHealth());
@@ -23,15 +25,16 @@ class Battle {
 
 			System.out.println("Enemy attacks for: " + e.getDamage());
 			c.setHealth(c.getHealth() - e.getDamage());
-			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()));
+			curHealth = curHealth - e.getDamage();
+			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()) + " " + curHealth);
 			System.out.println();
 			try {
-				Thread.sleep(1500);
+				Thread.sleep(2000);
 			} catch (InterruptedException ie) {
 				System.out.println("Interrupted!");
 			}
 
-			if ((c.getHealth() + c.getArmorValue()) <= 0) {
+			if (curHealth <= 0) {
                 		System.out.println(c.getName() + " lost the battle and died! Game Over!");
 				System.out.println();
 				return false;
@@ -51,14 +54,15 @@ class Battle {
 				return true;
 			}*/
 
-		}
-		if ((c.getHealth() + c.getArmorValue()) > 0){
+		} while (curHealth > 0 && e.getHealth() > 0);
+		return false;
+		/*if ((c.getHealth() + c.getArmorValue()) > 0){
                 	System.out.println(c.getName() + " won the battle!");
 			return true;
 		}
 		else {
 			System.out.println(c.getName() + " lost the battle and died! Game Over!" );
 			return false;
-		}
+		}*/
 	}
 }
