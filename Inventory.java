@@ -86,11 +86,18 @@ class Inventory {
 		System.out.print("Enter a number: ");
 		int choice = in.nextInt();
 
-		System.out.println("");
-		System.out.println("Dropped: " + items.get(choice - 1).toString());
+		while (choice < 1 || choice > items.size() + 1) {
+			System.out.print("Enter a valid number: ");
+			choice = in.nextInt();
+		}
 
-		if (choice <= items.size()) {
-			items.remove(choice - 1);
+		if (choice >= 1 && choice <= items.size()) {
+			System.out.println("");
+			System.out.println("Dropped: " + items.get(choice - 1).toString());
+
+			if (choice <= items.size()) {
+				items.remove(choice - 1);
+			}
 		}
 	}
 
@@ -161,7 +168,7 @@ class Inventory {
 		int choice = in.nextInt();
 
 		while (choice < 1 || choice > count + 1) {
-			System.out.println("Enter a valid number");
+			System.out.print("Enter a valid number: ");
 			choice = in.nextInt();
 		}
 		if (choice >= 1 && choice <= count) {
@@ -173,7 +180,7 @@ class Inventory {
 			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()));
 		}
 	}
-	
+
 	public void fillArray(ArrayList<Item> list) {
 		for (int i = 0; i < items.size(); i++) {
 			list.add(items.get(i));
