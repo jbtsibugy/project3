@@ -4,11 +4,12 @@ import java.util.Scanner;
 class Character extends Organism {
 	private Item weapon;
 	private Item armor;
+	private Item otherItem;
 	private String name;
 
 	//Constructer for Character objects
 	public Character (String name) {
-		super(100, 5, '@');
+		super(100, 25, '@');
 		this.name = name;
 	}
 	// Method to load
@@ -51,6 +52,14 @@ class Character extends Organism {
 			return weapon.getStrength();
 		}
 
+	}
+	public int getOtherItemValue() {
+             if (otherItem == null) {
+                 return 0;
+	     }
+	     else {
+		     return otherItem.getStrength();
+	     }
 	}
 	//Setter method used to set the equipped weapon
 	public void setEquippedWeapon(Item weapon){
