@@ -5,6 +5,8 @@
  * @version 11/26/19
  */ 
 import java.util.Scanner;
+import java.util.*;
+import java.lang.Math;
 
 class Dungeon {
 	public static void main(String[] args) {
@@ -43,9 +45,28 @@ class Dungeon {
 		System.out.println("Random Item = $");
 		System.out.println("Stairway Enterence = #");
 		System.out.print("Enter your character's name: ");
+		//Timer t = new Timer;
+		//t.start();
+		java.util.Date date = new java.util.Date();
+		//System.out.print(date);
 		String name = in.next();
 		Character user = new Character(name);
 
+		String date_string = String.valueOf(date);
+		//System.out.println(date_string);
+		String parsed_date_string = date_string.substring(date_string.indexOf("0"), date_string.indexOf("0") + 7);
+		//System.out.print("wwww" + parsed_date_string + "eeeeeeeeeeeeeeeeeeeee ");
 		Field game = new Field(user);
+		java.util.Date date2 = new java.util.Date();
+		String String_date2 = String.valueOf(date2);
+		String parsed_date_two = String_date2.substring(String_date2.indexOf("0"), date_string.indexOf("0") + 7);
+		int end = Integer.parseInt(parsed_date_two.substring(5,7));
+		int start = Integer.parseInt(parsed_date_string.substring(5,7));
+		int total_time = end - start;
+		if (total_time < 0){
+			total_time = total_time * -1;
+		}
+		System.out.println("total Minutes explored: " + total_time + " mins");
+		//int total_time = (int(parsed_date_two.substring(6,8)) - int(parsed_date_two.substring(6,8)));
 	}
 }

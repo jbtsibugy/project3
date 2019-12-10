@@ -157,8 +157,9 @@ class Field {
 				}
 				if (grid[y][x - 1] == '&') {
 					grid[y][x - 1] = '*';
-				}
-			}
+				}	
+			
+		}
 			//moveEnemies();
 		} while (!move.equals("q"));
 	}
