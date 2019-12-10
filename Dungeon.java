@@ -11,10 +11,10 @@ class Dungeon {
 		Scanner in = new Scanner(System.in);
 		
 		System.out.println("Enormous, murdurous Trolls keep attacking your town. They take your");
-		System.out.println("people, take them to the dungeons, and feast on them. You have decided");
-		System.out.println("to enter one of the dungeons and take all of the Trolls out. The only");
-		System.out.println("way to enter a dungeon is to jump down a hidden hole in the ground.");
-		System.out.println("You will appear in the center of the first floor of the Troll's");	
+		System.out.println("people, force them into the dungeons, and feast on them. You have");
+		System.out.println("decided to enter one of the dungeons and take all of the Trolls out.");
+		System.out.println("The only way to enter a dungeon is to jump down a hidden hole in the");
+		System.out.println("ground. You will land in the center of the first floor of the Troll's");	
 		System.out.println("dungeon. You enter the dungeon with only a heavy stick for a weapon,"); 
 		System.out.println("and a thick leather jacket for armor. You have no armor or weapons");
 		System.out.println("equipped when you first enter the dungeon, so keep this in mind before");
@@ -24,11 +24,10 @@ class Dungeon {
 		System.out.println("right of one of them. When you enter a space that has an item mark,");
 		System.out.println("you will be told what the item is and then asked if you would like to");
 		System.out.println("add the item to your inventory. You must add the items to your");
-		System.out.println("inventory before you can equip your character with anything. Be");
+		System.out.println("inventory before you can equip your character with any new item. Be");
 		System.out.println("careful though, you can only carry 50 pounds of items in your");
 		System.out.println("inventory. Keep track of the total weight of your inventory and drop");
 		System.out.println("any items that you will not need. There are three levels to this");
-
 		System.out.println("particular dungeon. You can move back and forth between each level by");
 		System.out.println("entering a space with a stairway enterence mark. Each level has");
 		System.out.println("several items that you can equip to your character as well as multiple");

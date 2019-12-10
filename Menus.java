@@ -8,9 +8,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 class Menus {
-	private static Inventory inven = new Inventory(50);
+	public static Inventory inven = new Inventory(50);
+	public static Inventory mercInven = new Inventory();
+	public static ArrayList<Item> items = new ArrayList<Item>();
+	public static ArrayList<Item> mercItems = new ArrayList<Item>();
 	static Scanner in = new Scanner(System.in);
 
 	//Method used to display and interact with the users inventory
@@ -57,10 +61,6 @@ class Menus {
 						FileOutputStream save = new FileOutputStream("savedinfo.txt");
 						PrintWriter print = new PrintWriter(save);
 						c.persist(print);
-						e1.persist(print);
-						e2.persist(print);
-						e3.persist(print);
-						e4.persist(print);
 						print.close();
 					}	catch(FileNotFoundException e){
 						System.out.println("File was not found");		
@@ -71,10 +71,6 @@ class Menus {
 						FileInputStream load = new FileInputStream("savedinfo.txt");
 						Scanner filereader = new Scanner(load);
 						c.hydration(filereader);
-						e1.hydration(filereader);
-						e2.hydration(filereader);
-						e3.hydration(filereader);
-						e4.hydration(filereader);
 						filereader.close();
 					}	catch(FileNotFoundException e){
 						System.out.println("File was not found");
@@ -102,10 +98,53 @@ class Menus {
 		}
 		if (choice.equals("y")) {
 			boolean canAdd = inven.add(thing);
-			System.out.println("Item has been added to inventory");
+			//System.out.println("Item has been added to inventory");
 		}
 		else {
 			System.out.println("Item has been dropped");
 		}
 	}
+
+	public static void merchant() {
+		inven.fillArray(items);
+	        mercInven.fillMercArray(mercItems);
+
+		/*for (int i = 0; i < mercItems.size(); i++) {
+			System.out.println(mercItems.get(i).toString());
+		}*/
+		
+		System.out.println("Would you like to trade one of your items for: " + mercItems.get(0).toString() + "?");
+		System.out.println("You need an item with a value of at least 30!");
+		inven.print();
+
+		System.out.println("Would you like to trade one of the items in your inventory (y or n)?");
+		String choice = in.next();
+
+		while (!choice.equals("y") && !choice.equals("n")) {
+			System.out.print("Enter a valid choice: ");
+			choice = in.next();
+		}
+		if (choice.equals("y")) {
+			System.out.print("Enter a number: ");
+			int num = in.nextInt();
+
+			while (num < 1 || num > items.size()) {
+				System.out.print("Enter a valid number: ");
+				num = in.nextInt();
+			}
+			if (num >= 1 && num <= items.size()) {
+				if (items.get(num - 1).getValue() >= 30) {
+					boolean canAdd = inven.add(mercItems.get(0));
+					inven.delete(num - 1);
+					mercInven.deleteMerc(0);
+
+				}
+				else {
+					System.out.println("This items value is less than 30!");
+					System.out.println("Cannot trade for this item!");
+				}
+			}
+		}
+	}
+
 }

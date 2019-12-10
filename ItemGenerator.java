@@ -15,9 +15,9 @@ class ItemGenerator {
 	public static Item generate() {
 	Item w1 = new Item(ItemType.WEAPON, "Small Pistol", 4, 15, 10);
 	list.add(w1);
-	Item w2 = new Item(ItemType.WEAPON, "Large Pistol", 6, 18, 15);
+	Item w2 = new Item(ItemType.WEAPON, "Large Pistol", 6, 20, 15);
 	list.add(w2);
-	Item w3 = new Item(ItemType.WEAPON, "Shotgun", 12, 25, 30);
+	Item w3 = new Item(ItemType.WEAPON, "Shotgun", 12, 30, 30);
 	list.add(w3);
 	Item w4 = new Item(ItemType.WEAPON, "Assault Rifle", 10, 35, 40);
 	list.add(w4);
@@ -25,8 +25,10 @@ class ItemGenerator {
 	list.add(w5);
 	Item w6 = new Item(ItemType.WEAPON, "Combat Knife", 1, 5, 5);
 	list.add(w6);
-	Item w7 = new Item(ItemType.WEAPON, "Flamethrower", 20, 20, 30);
+	Item w7 = new Item(ItemType.WEAPON, "Flamethrower", 20, 25, 30);
 	list.add(w7);
+	Item w8 = new Item(ItemType.WEAPON, "Railgun", 20, 50, 80);
+	list.add(w8);
 	Item a1 = new Item(ItemType.ARMOR, "Flack Jacket", 6, 16, 60);
 	list.add(a1);
 	Item a2 = new Item(ItemType.ARMOR, "Heavy Body Armor", 15, 25, 90);
@@ -39,6 +41,8 @@ class ItemGenerator {
 	list.add(a5);
 	Item a6 = new Item(ItemType.ARMOR, "Large Shield", 10, 16, 80);
 	list.add(a6);
+	Item a7 = new Item(ItemType.ARMOR, "Enhanced Combat Armor", 12, 50, 200);
+	list.add(a7);
 	Item o1 = new Item(ItemType.OTHER, "Large Headphones", 4, 15, 0);
 	list.add(o1);
 	Item o2 = new Item(ItemType.OTHER, "Small Earbuds", 2, 10, 0);

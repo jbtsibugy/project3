@@ -8,7 +8,8 @@ import java.util.Scanner;
  * @version 10/01/19
  */
 class Inventory {
-	ArrayList<Item> items = new ArrayList<Item>();
+	public static ArrayList<Item> items = new ArrayList<Item>();
+	public static ArrayList<Item> mercItems = new ArrayList<Item>();
 	Scanner in = new Scanner(System.in);
 
 	private int maxWeight;
@@ -24,15 +25,25 @@ class Inventory {
 		items.add(a0);
 	}
 
+	//Constructor for Inventory objects with no input parameter
+	public Inventory() {
+		Item m1 = new Item(ItemType.ARMOR, "Military Armor", 10, 30, 110);
+		mercItems.add(m1);
+		Item m2 = new Item(ItemType.WEAPON, "Shotgun", 12, 30, 30);
+		mercItems.add(m2);
+	}
+
 	//This method is used to add an Item object to the items ArrayList and
 	//ensure that the item does not make the inventory go over the weight limit
 	public boolean add(Item item) {
 		int weight = totalWeight() + item.getWeight();
 		if (weight  <= maxWeight) {
 			items.add(item);
+			System.out.println("Item has been added to inventory");
 			return true;
 		}
 		else {
+			System.out.println("Cannot add to inventory! Too heavy!");
 			return false;
 		}
 	}
@@ -80,6 +91,14 @@ class Inventory {
 		if (choice <= items.size()) {
 			items.remove(choice - 1);
 		}
+	}
+
+	public void delete(int i) {
+		items.remove(i);
+	}
+
+	public void deleteMerc(int i) {
+		mercItems.remove(i);
 	}
 
 	//This method is used to allow the user to equip a weapon from there
@@ -151,6 +170,18 @@ class Inventory {
 			System.out.println("Equipped: " + equippedArmor.toString());
 			//c.setHealth(c.getHealth() + equippedArmor.getStrength());
 			System.out.println(c.getName() + "'s health: " + (c.getHealth() + c.getArmorValue()));
+		}
+	}
+	
+	public void fillArray(ArrayList<Item> list) {
+		for (int i = 0; i < items.size(); i++) {
+			list.add(items.get(i));
+		}
+	}
+
+	public void fillMercArray(ArrayList<Item> list) {
+		for (int i = 0; i < mercItems.size(); i++) {
+			list.add(mercItems.get(i));
 		}
 	}
 }

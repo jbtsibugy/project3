@@ -49,6 +49,6 @@ class Item {
 	//Method used to return a string value of the item's name, weight, value,
 	//and strength
 	public String toString() {
-		return this.name + " " + this.weight + " " + this.value + " " +this.strength;
+		return this.type.toString() + ", " +  this.name + ", " + this.weight + ", " + this.value + ", " +this.strength;
 	}
 }

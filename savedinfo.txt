@@ -1,16 +1,11 @@
-Zach
-40
-1
-.
-96
-15
-.
+a
 100
-15
-.
-100
-15
-.
-100
-15
+5
+WEAPON, Baseball Bat, 2, 5, 5
+ARMOR, Thick Leather Jacket, 2, 4, 30
+Inventory
+WEAPON, Baseball Bat, 2, 5, 5
+ARMOR, Thick Leather Jacket, 2, 4, 30
+WEAPON, Combat Knife, 1, 5, 5
+Enemies
 .

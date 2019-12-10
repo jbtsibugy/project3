@@ -109,6 +109,9 @@ class Field {
 			if (grid[y][x] == '$') {
 				Menus.floorItemMenu();
 			}
+			else if (grid[y][x] == '?') {
+				Menus.merchant();
+			}
 			else if (grid[y][x] == '#' && y == 11) {
 				grid = room2.getGrid();
 
@@ -123,12 +126,12 @@ class Field {
 			else if (grid[y][x] == '#' && y == 10) {
 				grid = room3.getGrid();
 				x = 7;
-				y = 8;
+				y = 9;
 			}
-			else if (grid[y][x] == '#' && y == 7) {
+			else if (grid[y][x] == '#' && y == 8) {
 				grid = room2.getGrid();
 				x = 7;
-				y = 11;
+				y = 9;
 			}
 			else if (grid[y][x] == '&' || grid[y + 1][x] == '&' || grid[y - 1][x] == '&' || grid[y][x + 1] == '&' || grid[y][x - 1] == '&') {
 				
@@ -159,7 +162,6 @@ class Field {
 					grid[y][x - 1] = '*';
 				}
 			}
-			//moveEnemies();
 		} while (!move.equals("q"));
 	}
 

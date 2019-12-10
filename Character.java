@@ -13,20 +13,61 @@ class Character extends Organism {
 	}
 	// Method to load
 	void hydration(Scanner s) {
-		String trash;
-		String desc;
 		name = s.nextLine();
 		health = s.nextInt();
 		damage = s.nextInt();
-		trash = s.nextLine();
-		desc = s.nextLine();    
+		s.nextLine();
+		String weaponString = s.nextLine();
+		weapon = parseItem(weaponString);
+		armor = parseItem(s.nextLine());
+		//Throw away the "Inventory line"
+		s.nextLine();
+		// Gather all inventory item
+		String temp = s.nextLine();
+		while (!temp.equals("Enemies")) {
+			Item item = parseItem(temp);
+			Menus.inven.items.add(item);
+			temp = s.nextLine();
+		}
+
 	}
 	// Method to save
 	void persist(PrintWriter pw){
+		this.weapon = Menus.inven.items.get(0);
+		this.armor = Menus.inven.items.get(1);
 		pw.println(name);
 		pw.println(health);
 		pw.println(damage);
+		pw.println(weapon.toString());
+		pw.println(armor.toString());
+		pw.println("Inventory");
+		for (Item item : Menus.inven.items) {
+			pw.println(item.toString());
+		}
+		pw.println("Enemies");
+		/*for (Item item : Menus.inven) {
+			pw.println(item.toString());
+		}*/
 		pw.println(".");
+	}
+
+	public Item parseItem(String itemString){
+		System.out.println("ItemString: "+itemString);
+		ItemType type;
+		String[] attr = itemString.split(", ");
+		switch(attr[0]){
+			case "WEAPON":
+				type = ItemType.WEAPON;
+				break;
+			case "ARMOR":
+				type = ItemType.ARMOR;
+				break;
+			default:
+				type = ItemType.OTHER;
+				break;
+		}
+		Item item = new Item(type,attr[1],Integer.parseInt(attr[2]),Integer.parseInt(attr[3]),Integer.parseInt(attr[4]));
+		return item;
 	}
 
 	//Getter method for returning the name
