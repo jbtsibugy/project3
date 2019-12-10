@@ -109,15 +109,12 @@ class Menus {
 		inven.fillArray(items);
 	        mercInven.fillMercArray(mercItems);
 
-		/*for (int i = 0; i < mercItems.size(); i++) {
-			System.out.println(mercItems.get(i).toString());
-		}*/
-		
 		System.out.println("Would you like to trade one of your items for: " + mercItems.get(0).toString() + "?");
 		System.out.println("You need an item with a value of at least 30!");
 		inven.print();
 
-		System.out.println("Would you like to trade one of the items in your inventory (y or n)?");
+		System.out.println("");
+		System.out.print("Would you like to trade one of the items in your inventory (y or n)? ");
 		String choice = in.next();
 
 		while (!choice.equals("y") && !choice.equals("n")) {
@@ -137,9 +134,13 @@ class Menus {
 					boolean canAdd = inven.add(mercItems.get(0));
 					inven.delete(num - 1);
 					mercInven.deleteMerc(0);
+					items.remove(num - 1);
+					mercItems.remove(0);
 
 				}
 				else {
+					mercInven.deleteMerc(0);
+					mercItems.remove(0);
 					System.out.println("This items value is less than 30!");
 					System.out.println("Cannot trade for this item!");
 				}
