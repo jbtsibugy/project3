@@ -68,7 +68,7 @@ class Dungeon {
 		if (total_time < 0){
 			total_time = total_time * -1;
 		}
-		System.out.println("total Minutes explored: " + total_time + " mins");
+		System.out.println("Total Minutes Explored: " + total_time + " mins");
 		//int total_time = (int(parsed_date_two.substring(6,8)) - int(parsed_date_two.substring(6,8)));
 	}
 }
