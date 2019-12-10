@@ -1,16 +1,27 @@
+/**
+ * This class takes in a Character and an Enemy object and determines who would
+ * win the battle.
+ * @author Zachary Brennan
+ * @author Benedict
+ */
 import java.util.Scanner;
 
 class Battle {
 
-	//Method used to determine if character has won or lost the figth.
-	//This method takes in a Character and an Enemy as input parameters
-	//and uses them to determine which of the two will still have
-	//remaining health after the battle
+	/**
+	 * Static method used to determine if character has won or lost the battle.
+	 * This method takes in a Character and an Enemy as input parameters and
+	 * uses them to determine which of the two will still have remaining health
+	 * after the battle. 
+	 * Will return true if Character still has health when the battle is over.
+	 * @return whether or not it is true that the Character won the battle.
+	 * @param c Character object used for battle.
+	 * @param e Enemy object used for battle.
+	 */
 	public static boolean winFight (Character c, Enemy e) {
 		Scanner in = new Scanner(System.in);
 		int curHealth = c.getHealth() + c.getArmorValue();
 
-		//while (curHealth > 0 && e.getHealth() > 0) {
 		do {
 			System.out.println(c.getName() + " attacks the Troll for: " + (c.getDamage() + c.getWeaponValue()) + " damage");
 			e.setHealth(e.getHealth() - (c.getDamage() + c.getWeaponValue()));
@@ -39,20 +50,6 @@ class Battle {
 				System.out.println();
 				return false;
 			}
-
-			/*System.out.print("Would you like to continue the battle or run (c or r)? ");
-			String choice = in.next();
-			System.out.println("");
-
-			while (!choice.equals("c") && !choice.equals("r")) {
-				System.out.print("Enter a valid choice: ");
-				choice = in.next();
-			}
-
-			if (choice.equals("r")) {
-				System.out.println("You have run from the battle");
-				return true;
-			}*/
 
 		} while (curHealth > 0 && e.getHealth() > 0);
 		return false;

@@ -7,12 +7,22 @@ class Character extends Organism {
 	private Item otherItem;
 	private String name;
 
-	//Constructer for Character objects
+	/**
+	 * Constructs new <tt>Character</tt> object with default values for
+	 * health, damage and char.
+	 * @param name name of the users character
+	 */
 	public Character (String name) {
 		super(100, 5, '@');
 		this.name = name;
 	}
-	// Method to load
+	
+	/**
+	 * Loads Characters stats from a previous game.
+	 * This is done by using a scanner to read iformation from
+	 * file until it reads the String Enemies.
+	 * @param s Scanner used to read in information from the file.
+	 */
 	void hydration(Scanner s) {
 		name = s.nextLine();
 		health = s.nextInt();
@@ -32,7 +42,13 @@ class Character extends Organism {
 		}
 
 	}
-	// Method to save
+	
+	/**
+	 * Saves the stats of a character from a previous game.
+	 * This is done by writting information to a .txt file that will
+	 * later be loaded.
+	 * @param pw PrintWriter used to write information to file.
+	 */
 	void persist(PrintWriter pw){
 		this.weapon = Menus.inven.items.get(0);
 		this.armor = Menus.inven.items.get(1);
@@ -52,6 +68,14 @@ class Character extends Organism {
 		pw.println(".");
 	}
 
+	/**
+	 * Takes in one of the Strings WEAPON, ARMOR, or OTHER and converts
+	 * it into an Item by taking the information read in from the file.
+	 * This will allow you to set your Characters inventory items type
+	 * when loading.
+	 * @return an Item with an ItemType that you can properly load.
+	 * @param itemString WEAPON, ARMOR, or OTHER
+	 */
 	public Item parseItem(String itemString){
 		System.out.println("ItemString: "+itemString);
 		ItemType type;
@@ -71,11 +95,18 @@ class Character extends Organism {
 		return item;
 	}
 
-	//Getter method for returning the name
+	/**
+	 * Getter method for returning a name.
+	 * @return the name of the Character.
+	 */
 	public String getName(){
 		return name;
 	}
 
+	/**
+	 * Returns the armors strength as long as the armor does not equal null.
+	 * @return the strength of the armor.
+	 */
 	public int getArmorValue() {
 		if (armor == null) {
 			return 0;
@@ -85,6 +116,10 @@ class Character extends Organism {
 		}
 	}
 
+	/**
+	 * Returns the weapons strength as long as the weapon does not equal null.
+	 * @return the strength of the weapon.
+	 */
 	public int getWeaponValue() {
 		if (weapon == null) {
 			return 0;
@@ -94,6 +129,11 @@ class Character extends Organism {
 		}
 
 	}
+
+	/**
+	 * Returns the items value as long as the item does not equal null.
+	 * @return the value of this item.
+	 */
 	public int getOtherItemValue() {
              if (otherItem == null) {
                  return 0;
@@ -102,22 +142,35 @@ class Character extends Organism {
 		     return otherItem.getStrength();
 	     }
 	}
-	//Setter method used to set the equipped weapon
+
+	/**
+	 * Setter method used to set a weapon as the equipped weapon.
+	 * @param weapon item that is to be equipped as weapon.
+	 */
 	public void setEquippedWeapon(Item weapon){
 		this.weapon = weapon;
 	}
 
-	//Setter method used to set the equipped armor
+	/**
+	 * Setter method used to set an armor as the equipped armor.
+	 * @param armor item that is to be equipped as armor.
+	 */
 	public void setEquippedArmor(Item armor){
 		this.armor = armor;
 	}
 
-	//Method used to add the weapon's strength to the character's health
+	/**
+	 * Adds weapons strength to the Characters damage.
+	 * @param weapon item whos strength is to be added to damage.
+	 */
 	public void addWeapon (Item weapon){
 		this.damage = weapon.getStrength() + this.damage;
 	}
 
-	//Method used to add the armor's strength to the character's health
+	/**
+	 * Adds armors strength to the Characters health.
+	 * @param armor item whos strength is to be added to health.
+	 */
 	public void addArmor (Item armor){
 		this.health = armor.getStrength() + this.health;
 	}
