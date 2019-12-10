@@ -5,6 +5,8 @@
  * @version 11/26/19
  */ 
 import java.util.Scanner;
+import java.util.*;
+import java.lang.Math;
 
 class Dungeon {
 	public static void main(String[] args) {
@@ -45,9 +47,26 @@ class Dungeon {
 		System.out.println("Stairway Enterence = #");
 		System.out.println("Merchant Troll = ?");
 		System.out.print("Enter your character's name: ");
+		
+		//record start time for timer
+		java.util.Date date = new java.util.Date();
 		String name = in.next();
 		Character user = new Character(name);
-
+		//change date to string and parse
+		String date_string = String.valueOf(date);
+		String parsed_date_string = date_string.substring(date_string.indexOf("0"), date_string.indexOf("0") + 7);
 		Field game = new Field(user);
+		//record end time of game for timer
+		java.util.Date date2 = new java.util.Date();
+		String String_date2 = String.valueOf(date2);
+		String parsed_date_two = String_date2.substring(String_date2.indexOf("0"), date_string.indexOf("0") + 7);
+		int end = Integer.parseInt(parsed_date_two.substring(5,7));
+		int start = Integer.parseInt(parsed_date_string.substring(5,7));
+		int total_time = end - start;
+		if (total_time < 0){
+			total_time = total_time * -1;
+		}
+		//print total time elapsed
+		System.out.println("Total Minutes Explored: " + total_time + " mins");
 	}
 }
