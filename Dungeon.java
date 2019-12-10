@@ -47,18 +47,16 @@ class Dungeon {
 		System.out.println("Stairway Enterence = #");
 		System.out.println("Merchant Troll = ?");
 		System.out.print("Enter your character's name: ");
-		//Timer t = new Timer;
-		//t.start();
+		
+		//record start time for timer
 		java.util.Date date = new java.util.Date();
-		//System.out.print(date);
 		String name = in.next();
 		Character user = new Character(name);
-
+		//change date to string and parse
 		String date_string = String.valueOf(date);
-		//System.out.println(date_string);
 		String parsed_date_string = date_string.substring(date_string.indexOf("0"), date_string.indexOf("0") + 7);
-		//System.out.print("wwww" + parsed_date_string + "eeeeeeeeeeeeeeeeeeeee ");
 		Field game = new Field(user);
+		//record end time of game for timer
 		java.util.Date date2 = new java.util.Date();
 		String String_date2 = String.valueOf(date2);
 		String parsed_date_two = String_date2.substring(String_date2.indexOf("0"), date_string.indexOf("0") + 7);
@@ -68,7 +66,7 @@ class Dungeon {
 		if (total_time < 0){
 			total_time = total_time * -1;
 		}
+		//print total time elapsed
 		System.out.println("Total Minutes Explored: " + total_time + " mins");
-		//int total_time = (int(parsed_date_two.substring(6,8)) - int(parsed_date_two.substring(6,8)));
 	}
 }
