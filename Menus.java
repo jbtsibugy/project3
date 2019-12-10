@@ -28,14 +28,15 @@ class Menus {
 			System.out.println("2: Drop item");
 			System.out.println("3: Equip weapon");
 			System.out.println("4: Equip armor");
-			System.out.println("5: Return to dugeon");
+			System.out.println("5: Use Item ");
 			System.out.println("6: Save Game");
 			System.out.println("7: Load Game");
+			System.out.println("8: Return to dugeon");
 
 			System.out.print("Enter a number: ");
 			choice = in.nextInt();
 
-			while (choice < 1 || choice > 7) {
+			while (choice < 1 || choice > 8) {
 				System.out.print("Enter a valid number: ");
 				choice = in.nextInt();
 			}
@@ -56,6 +57,9 @@ class Menus {
 				case 4:
 					inven.equipArmor(c);
 					break;
+				case 5:
+					inven.useItem(c);
+					break;	
 				case 6:
 					try {
 						FileOutputStream save = new FileOutputStream("savedinfo.txt");
@@ -80,7 +84,7 @@ class Menus {
 			}
 			System.out.println("");
 
-		} while (choice != 5);
+		} while (choice != 8);
 	}
 
 	//Method used to print a randon item that the user has found and

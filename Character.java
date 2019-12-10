@@ -4,6 +4,7 @@ import java.util.Scanner;
 class Character extends Organism {
 	private Item weapon;
 	private Item armor;
+	private Item otherItem;
 	private String name;
 
 	//Constructer for Character objects
@@ -92,6 +93,14 @@ class Character extends Organism {
 			return weapon.getStrength();
 		}
 
+	}
+	public int getOtherItemValue() {
+             if (otherItem == null) {
+                 return 0;
+	     }
+	     else {
+		     return otherItem.getStrength();
+	     }
 	}
 	//Setter method used to set the equipped weapon
 	public void setEquippedWeapon(Item weapon){

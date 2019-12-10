@@ -15,14 +15,15 @@ class Inventory {
 	private int maxWeight;
 	private Item equippedWeapon;
 	private Item equippedArmor;
-
+	private Item equippedItem;
+	// ItemType, name, weight, value, strength
 	//Constructor for Inventory objects with maxWeight as the input parameter
 	public Inventory(int maxWeight) {
 		this.maxWeight = maxWeight;
-		Item w0 = new Item(ItemType.WEAPON, "Baseball Bat", 2, 5, 5);
+		Item w0 = new Item(ItemType.WEAPON, "Crossbow", 2, 10, 10);
 		items.add(w0);
-		Item a0 = new Item(ItemType.ARMOR, "Thick Leather Jacket", 2, 4, 30);
-		items.add(a0);
+		Item a0 = new Item(ItemType.ARMOR, "Small Shield", 4, 8, 50);
+		items.add(a0);		
 	}
 
 	//Constructor for Inventory objects with no input parameter
@@ -84,7 +85,7 @@ class Inventory {
 
 		System.out.print("Enter a number: ");
 		int choice = in.nextInt();
-		
+
 		System.out.println("");
 		System.out.println("Dropped: " + items.get(choice - 1).toString());
 
@@ -184,4 +185,45 @@ class Inventory {
 			list.add(mercItems.get(i));
 		}
 	}
+
+	public void useItem(Character c) {
+
+		ArrayList<Item> otheritems = new ArrayList<Item>();
+		System.out.println("");
+		System.out.println("Equip item:");
+		System.out.println("Item Weight Value Strength");
+		int count = 0;
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getType() == ItemType.OTHER) {
+				otheritems.add(items.get(i));
+				count++;
+				System.out.println(count + ": " + items.get(i).toString());
+			}
+		}
+		System.out.println(count + 1 + ": Cancel");
+
+		System.out.print("Enter a number: ");
+		int choice = in.nextInt();
+
+		while (choice < 1 || choice > count + 1) {
+			System.out.println("Enter a valid number");
+			choice = in.nextInt();
+		}
+		if (choice >= 1 && choice <= count) {
+			this.equippedItem = otheritems.get(choice -1);
+			System.out.println("");
+			System.out.println("Equipped: " + equippedItem.toString());
+
+			if (otheritems.get(choice - 1).getName().equals("Adrenaline Shot")){
+				c.addWeapon(otheritems.get(choice - 1)); 
+				System.out.println(c.getName() + "'s health: " + (c.getDamage() + c.getOtherItemValue()));
+			}
+			else if (otheritems.get(choice - 1).getName().equals("Estus Flask")) {
+				c.addArmor(otheritems.get(choice - 1));
+				System.out.println(c.getName() + "'s damage value: " + (c.getDamage() + c.getOtherItemValue()));
+
+			}
+
+		}
+	}	
 }
