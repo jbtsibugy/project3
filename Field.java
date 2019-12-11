@@ -1,6 +1,10 @@
-/*
+/**
+ * This class creates a field to play on using 2D array. It creates three
+ * room objects that can all be accessed in gameplay. It also allows the
+ * user to move his/her character throughout the fields and initiates the
+ * interactions with objects in the room. Lastly, it makes all enemies 
+ * move on their path during each turn of the game.
  * @author Zachary Brennan
- * @version 10/25/19
  */
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -8,7 +12,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
-class Field {
+public class Field {
 	Scanner in = new Scanner(System.in);
 	private char[][] grid;
 	private Room room1;
@@ -16,6 +20,12 @@ class Field {
 	private Room room3;
 	private Character c;
 
+	/**
+	 * Constructs new <tt>Field</tt> object which creates the three room 
+	 * objects, sets the grid to the first room and then initiates the 
+	 * moveChar method.
+	 * @param c the users Character.
+	 */
 	public Field(Character c) {
 		room1 = new Room("room1.txt");
 		room2 = new Room("room2.txt");
@@ -25,9 +35,13 @@ class Field {
 		moveChar(c);
 	}
 
-	//Mehtod used to move the users char throughout the grid.
-	//This method also sets creates Enemy objects and allows the users
-	//char to interact with the playing field
+	/**
+	 * This drops the users character into the dungeon in the first room.
+	 * It then generates and fills the grids with enemy Trolls. Lastly,
+	 * it allows the users character to move throughout the three grids
+	 * and access menus when encountering objects in the rooms.
+	 * @param c the users Character.
+	 */
 	public void moveChar(Character c) {
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		char user = c.getChar();
@@ -102,7 +116,7 @@ class Field {
 			}
 
 			if (move.equals("i")) {
-				Menus.characterMenu(c, enemies.get(0),enemies.get(1), enemies.get(2), enemies.get(3));
+				Menus.characterMenu(c);
 			}
 
 			moveEnemies();
@@ -167,7 +181,14 @@ class Field {
 		} while (!move.equals("q"));
 	}
 
-	//Method used to move the users char to the left and right on the grid
+	/**
+	 * This is used to determine if the users character can move
+	 * horizontally without being stoped by a wall.
+	 * @return the integer value that will be used for the horizontal shift.
+	 * @param s users input of which direction to move.
+	 * @param vert the vertical value for the 2D array.
+	 * @param horiz the horizontal value for the 2D arrray.
+	 */
 	public int moveX(String s, int vert, int horiz) {
 		if (s.equals("a")) {
 			if (grid[vert][horiz - 1] == '|' || grid[vert][horiz - 1] == '-') {
@@ -186,7 +207,14 @@ class Field {
 		return horiz;
 	}
 
-	//Method used to move the users char up and down on the grid
+	/**
+	 * This is used to determine if the users character can move
+	 * vertically without being stoped by a wall.
+	 * @return the integer value that will be used for the vertical shift.
+	 * @param s users input of which direction to move.
+	 * @param vert the vertical value for the 2D array.
+	 * @param horiz the horizontal value for the 2D arrray.
+	 */
 	public int moveY(String s, int vert, int horiz) {
 		if (s.equals("s")) {
 			if (grid[vert + 1][horiz] == '-' || grid[vert + 1][horiz] == '|') {
@@ -205,8 +233,9 @@ class Field {
 		return vert;
 	}
 
-	//Method used to move the enemies in circulat motions around the
-	//items on the grid
+	/**
+	 * Moves enemies on all three grids in constant circular motions.
+	 */
 	public void moveEnemies() {
 		char enemy = '&';
 		if (grid[1][1] == '&') {

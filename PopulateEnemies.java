@@ -1,10 +1,16 @@
-/*
+/**
+ * This class is used to create 12 new Enemy objects.
  * @author Zachary Brennan
- * @version 11/25/19
- */ 
+ */
 import java.util.ArrayList;
 
-class PopulateEnemies {
+public class PopulateEnemies {
+
+	/**
+	 * Static method used to create several new Enemy objects and add them to an
+	 * ArrayList.
+	 * @param enemies ArrayList to be filled with Enemy objects.
+	 */
 	public static void createThem(ArrayList<Enemy> enemies) {
 		Enemy e1 = new Enemy();
 		enemies.add(e1);

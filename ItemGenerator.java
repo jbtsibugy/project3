@@ -1,18 +1,21 @@
+/**
+ * This class an ArrayList of weapons, armors and other items, then randomly
+ * generates one item that could be added to the users inventory.
+ * @Zachary Brennan
+ */
 import java.util.Random;
 import java.util.ArrayList;
 
-/*This class is used to create several item objects and randomly generate and item
- * that could be added to the users inventory.
- *
- * @author Zachary Brennan
- * @version 09/26/19
- */
-class ItemGenerator {
+public class ItemGenerator {
 	static Random rng = new Random();
 	static ArrayList<Item> list = new ArrayList<Item>();
         // ItemType, name, weight, value, strength
 	//Method used to randomly generate a new item
 	
+	/**
+	 * Static method used to create several Item objects and randomly return one.
+	 * @return one randomly generated Item object.
+	 */
 	public static Item generate() {
 		
 	Item w1 = new Item(ItemType.WEAPON, "Small Pistol", 4, 15, 15);
@@ -39,24 +42,10 @@ class ItemGenerator {
 	list.add(a3);
 	Item a4 = new Item(ItemType.ARMOR, "Military Armor w/ Helmet", 12, 35, 130);
 	list.add(a4);
-	/*Item a5 = new Item(ItemType.ARMOR, "Small Shield", 4, 8, 50);
-	list.add(a5);*/
 	Item a6 = new Item(ItemType.ARMOR, "Large Shield", 10, 16, 80);
 	list.add(a6);
 	Item a7 = new Item(ItemType.ARMOR, "Enhanced Combat Armor", 12, 50, 200);
 	list.add(a7);
-	/*Item o1 = new Item(ItemType.OTHER, "Large Headphones", 4, 15, 0);
-	list.add(o1);
-	Item o2 = new Item(ItemType.OTHER, "Small Earbuds", 2, 10, 0);
-	list.add(o2);
-	Item o3 = new Item(ItemType.OTHER, "MP3 Player", 6, 25, 0);
-	list.add(o3);
-	Item o4 = new Item(ItemType.OTHER, "Frequency Radio", 8, 30, 0);
-	list.add(o4);
-	Item o5 = new Item(ItemType.OTHER, "Cell Phone", 7, 40, 0);
-	list.add(o5);
-	Item o6 = new Item(ItemType.OTHER, "Sunglasses", 3, 15, 0);
-	list.add(o6);*/
 	Item o7 = new Item(ItemType.OTHER, "Gold", 15, 35, 0);
 	list.add(o7);
 	Item o8 = new Item(ItemType.OTHER, "Diamonds", 10, 45, 0);

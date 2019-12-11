@@ -1,23 +1,29 @@
-/*This class creates Room objects. It reads in a .txt file containing the layout of the room
- * and then converts it to a 2D array of chars called grid. It also contains a method used to
- * return the 2D array.
- *
+/**
+ * A <tt>Room</tt> represents a new set of chars that will be put into a 2D array
+ * and used to create the grid on which the game is played. It reads in a .txt 
+ * file containing the layout of the room and then converts it to a 2D array of
+ * char symbols.
  * @author Zachary Brennan
- * @version 10/25/19
  */
 import java.util.Scanner;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
-class Room {
+public class Room {
 	Scanner roomIn;
 	char[][] grid;
 	String name;
 	private int rows;
 	private int cols;
 
-	//Constuctor for Room objects with name as the input parameter
+	/**
+	 * Constructs new <tt>Room</tt> objects by setting the size of the 2D array
+	 * and trying to read the file in using a Scanner, a BufferedReader, and 
+	 * a FileReader. Uses try catch block to attempt to read in the files.
+	 * @param name name of the room that will be read in.
+	 * @throws FileNotFoundException if the readers do  not find a file to read in.
+	 */
 	public Room(String name) {
 		this.name = name;
 		rows = 13;
@@ -38,7 +44,11 @@ class Room {
 			}
 		}
 	}
-	
+
+	/**
+	 * Returns a 2D array of the current grid.
+	 * @return 2D array of char symbols making up the grid.
+	 */
 	//Getter method used to return the 2D array grid
 	public char[][] getGrid() {
 		return grid;

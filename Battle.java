@@ -2,11 +2,11 @@
  * This class takes in a Character and an Enemy object and determines who would
  * win the battle.
  * @author Zachary Brennan
- * @author Benedict
+ * @author Benedict Tsibu-Gyan
  */
 import java.util.Scanner;
 
-class Battle {
+public class Battle {
 
 	/**
 	 * Static method used to determine if character has won or lost the battle.

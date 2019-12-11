@@ -1,9 +1,8 @@
-/*This class creates three enumerated values.
- *
+/**
+ * This class creates three enumerated values; WEAPON, ARMOR and OTHER.
  * @author Zachary Brennan
- * @version 09/26/19
  */
-	enum ItemType { 
+	public enum ItemType { 
 		WEAPON ("WEAPON"), 
 		ARMOR ("ARMOR"), 
 		OTHER ("OTHER");

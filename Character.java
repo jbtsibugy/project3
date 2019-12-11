@@ -1,7 +1,15 @@
+/**
+ * A <tt>Character</tt> represents a character with stats such as health, damage
+ * and char that is used to play Dungeon Crawler. This class extends the
+ * Organism class.
+ * @author Zachar Brennan
+ * @author Benedict Tsibu-Gyan
+ * @author Jonathan
+ */
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-class Character extends Organism {
+public class Character extends Organism {
 	private Item weapon;
 	private Item armor;
 	private Item otherItem;
@@ -20,7 +28,7 @@ class Character extends Organism {
 	/**
 	 * Loads Characters stats from a previous game.
 	 * This is done by using a scanner to read iformation from
-	 * file until it reads the String Enemies.
+	 * a file until it reads the String Enemies.
 	 * @param s Scanner used to read in information from the file.
 	 */
 	void hydration(Scanner s) {

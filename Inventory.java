@@ -1,13 +1,14 @@
+/**
+ * An <tt>Inventory</tt> is an ArrayList of Item objects that the user can
+ * access. It has several methods used to add and drop items from the inventory
+ * as well as equip items and so on.
+ * @author Zachary Brennan
+ * @author Benedict Tsibu-Gyan
+ */
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*This class is used to create an Inventory object. It has several methods used to
- * add and drop items form the inventory as well as equip items an so on.
- *
- * @author Zachary Brennan
- * @version 10/01/19
- */
-class Inventory {
+public class Inventory {
 	public static ArrayList<Item> items = new ArrayList<Item>();
 	public static ArrayList<Item> mercItems = new ArrayList<Item>();
 	Scanner in = new Scanner(System.in);
@@ -16,8 +17,12 @@ class Inventory {
 	private Item equippedWeapon;
 	private Item equippedArmor;
 	private Item equippedItem;
-	// ItemType, name, weight, value, strength
-	//Constructor for Inventory objects with maxWeight as the input parameter
+	
+	/**
+	 * Constructs new <tt>Inventory</tt> object with default items that the
+	 * users character will begin the game with.
+	 * @param maxWeight the maximum weight you can have in your inventory.
+	 */
 	public Inventory(int maxWeight) {
 		this.maxWeight = maxWeight;
 		Item w0 = new Item(ItemType.WEAPON, "Crossbow", 2, 10, 10);
@@ -26,7 +31,10 @@ class Inventory {
 		items.add(a0);		
 	}
 
-	//Constructor for Inventory objects with no input parameter
+	/**
+	 * Constructs new <tt>Inventory</tt> object with default items that the
+	 * merchant can trade to the users character.
+	 */
 	public Inventory() {
 		Item m1 = new Item(ItemType.ARMOR, "Military Armor", 10, 30, 110);
 		mercItems.add(m1);
@@ -34,8 +42,12 @@ class Inventory {
 		mercItems.add(m2);
 	}
 
-	//This method is used to add an Item object to the items ArrayList and
-	//ensure that the item does not make the inventory go over the weight limit
+	/**
+	 * Adds an item to the users inventory if the item does not cause the 
+	 * inventory to exceed its maximum weight.
+	 * @return whether or not the item has been added.
+	 * @param item the item that the user is adding to the inventory.
+	 */
 	public boolean add(Item item) {
 		int weight = totalWeight() + item.getWeight();
 		if (weight  <= maxWeight) {
@@ -49,7 +61,10 @@ class Inventory {
 		}
 	}
 
-	//This method is used to calculate the total weight of the inventory
+	/**
+	 * Calculates the current total weight of the inventory.
+	 * @return the new weight of the inventory.
+	 */
 	public int totalWeight() {
 		int weight = 0;
 		for (int i = 0; i < items.size(); i++) {
@@ -58,8 +73,10 @@ class Inventory {
 		return weight;
 	}
 
-	//This method is used to print the current items in the inventory to the
-	// screen as well as a description of the values being displayed
+	/**
+	 * Prints the current items in the inventory to the screen as well as
+	 * a description of the values being displayed.
+	 */
 	public void print() {
 		System.out.println("");
 		System.out.println("Inventroy:");
@@ -70,10 +87,11 @@ class Inventory {
 		System.out.println("Total weight: " + totalWeight());
 	}
 
-	//This method is used to allow the user to drop an item from there
-	//inventory. It first displays all of the items in the inventory to the 
-	//screen and then take the users input to determine which item to drop from
-	//the inventory
+	/**
+	 * Allows the user to drop an item from there inventory. It first displays
+	 * all of the items in the inventory to the screen and then take the users
+	 * input to determine which item to drop from the inventory.
+	 */
 	public void drop() {
 		System.out.println("");
 		System.out.println("Drop an item:");
@@ -101,18 +119,29 @@ class Inventory {
 		}
 	}
 
+	/**
+	 * Removes an item from the items ArrayList.
+	 * @param i index of item to be deleted form items ArrayList.
+	 */
 	public void delete(int i) {
 		items.remove(i);
 	}
 
+	/**
+	 * Removes an item from the mercItems ArrayList.
+	 * @param i index of item to be deleted form mercItems ArrayList.
+	 */
 	public void deleteMerc(int i) {
 		mercItems.remove(i);
 	}
 
-	//This method is used to allow the user to equip a weapon from there
-	//inventory. It first displays all the items with the ItemType WEAPON to the
-	//screen and then takes the users input to determine which item to set equal
-	//to the equippedWeapon variable
+	/**
+	 * Allows the user to equip a weapon from there inventory. It first displays
+	 * all the items with the ItemType WEAPON to the screen and then takes the
+	 * users input to determine which item to set equal to the equippedWeapon
+	 * variable.
+	 * @param c the users Character.
+	 */
 	public void equipWeapon(Character c) {
 		ArrayList<Item> weapons = new ArrayList<Item>();
 		System.out.println("");
@@ -145,10 +174,13 @@ class Inventory {
 		}
 	}
 
-	//This method is used to allow the user to equip armor from there inventory.
-	//It first displays all the items with the ItemType ARMOR to the screen and
-	//then takes the users input to determine which item to set equal to the
-	// equippedArmor variable
+	/**
+	 * Allows the user to equip an armor from there inventory. It first displays
+	 * all the items with the ItemType ARMOR to the screen and then takes the
+	 * users input to determine which item to set equal to the equippedArmor
+	 * variable.
+	 * @param c the users Character.
+	 */
 	public void equipArmor(Character c) {
 		ArrayList<Item> armors = new ArrayList<Item>();
 		System.out.println("");
@@ -181,18 +213,34 @@ class Inventory {
 		}
 	}
 
+	/**
+	 * Adds items from the items ArrayList to another ArrayList.
+	 * @param list new ArrayList that will be filled with items.
+	 */
 	public void fillArray(ArrayList<Item> list) {
 		for (int i = 0; i < items.size(); i++) {
 			list.add(items.get(i));
 		}
 	}
 
+	/**
+	 * Adds items from the mercItems ArrayList to another ArrayList.
+	 * @param list new ArrayList that will be filled with items.
+	 */
 	public void fillMercArray(ArrayList<Item> list) {
 		for (int i = 0; i < mercItems.size(); i++) {
 			list.add(mercItems.get(i));
 		}
 	}
 
+	/**
+	 * Allows the user to use an other item from there inventory. It first 
+	 * displays all the items with the ItemType OTHER to the screen and then 
+	 * takes the users input to determine which item to atttempt to use.
+	 * The "Adrenaline Shot" will increase the Characters damage and the
+	 * "Estus Flask" will increase the Characters health.
+	 * @param c the users Character.
+	 */
 	public void useItem(Character c) {
 
 		ArrayList<Item> otheritems = new ArrayList<Item>();

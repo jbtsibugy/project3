@@ -1,14 +1,21 @@
-/*This is the main method of the dungeon crawler project. It displays an overview of the game as well as
- * takes user input for the name of the character. It then calls the Field class to generate the game.
- *
+/**
+ * This is the main method of the dungeon crawler project.
+ * It displays an overview of the game with a small list 
+ * of instructions as well as takes user input for the name 
+ * of the character. It then calls the Field class to 
+ * generate the game and sets a timer to tell the user how
+ * many minutes he/she was playing the game.
  * @author Zachary Brennan
- * @version 11/26/19
+ * @author Jonathan
  */ 
 import java.util.Scanner;
 import java.util.*;
 import java.lang.Math;
 
-class Dungeon {
+public class Dungeon {
+	/**
+	 * Main method of Dungeon Crawler game
+	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		

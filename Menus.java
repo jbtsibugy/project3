@@ -1,6 +1,9 @@
-/* 
+/**
+ * This class creates menus to be accessed during play of Dungeon Crawler.
+ * These menus allow the user to play the game and interact with the world.
+ * It first creates two Inventory objects and then creates two ArrayLists.
  * @author Zachary Brennan
- * @version 10/28/19
+ * @author Benedict Tsibu-Gyan
  */
 import java.util.Scanner;
 import java.io.FileNotFoundException;
@@ -10,17 +13,20 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-class Menus {
+public class Menus {
 	public static Inventory inven = new Inventory(50);
 	public static Inventory mercInven = new Inventory();
 	public static ArrayList<Item> items = new ArrayList<Item>();
 	public static ArrayList<Item> mercItems = new ArrayList<Item>();
 	static Scanner in = new Scanner(System.in);
 
-	//Method used to display and interact with the users inventory
-	//menu. This method is used to display, drop items from, equip
-	//weapons, and equip armor from the character's inventory
-	public static void characterMenu(Character c, Enemy e1, Enemy e2, Enemy e3, Enemy e4) {	
+	/**
+	 * Static method used to display the users inventory items, drop items from 
+	 * the inventory, equip weapons and armor, and use other items from the 
+	 * characters inventory.
+	 * @param c the users character.
+	 */
+	public static void characterMenu(Character c) {	
 		int choice;
 
 		do {
@@ -87,8 +93,10 @@ class Menus {
 		} while (choice != 8);
 	}
 
-	//Method used to print a randon item that the user has found and
-	//allow the user to add the item to their inventory
+	/**
+	 * Static method that prints random item that the user has found and allow 
+	 * the user to add the item to their inventory.
+	 */
 	public static void floorItemMenu() {
 		Item thing = ItemGenerator.generate();
 
@@ -109,6 +117,13 @@ class Menus {
 		}
 	}
 
+	/**
+	 * Static method used to trade one of the users items for and item from the
+	 * merchant. It displays the item that the merchant will trade and then asks
+	 * the user if he/she would like to trade one of their items, with equal or 
+	 * greater value. When the user successfully trades, their old item will be 
+	 * removed from the ArrayList of items and the new item will be added.
+	 */
 	public static void merchant() {
 		inven.fillArray(items);
 	        mercInven.fillMercArray(mercItems);
